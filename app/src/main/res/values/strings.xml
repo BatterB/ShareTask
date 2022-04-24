@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">ShareTask</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="web_client_id">59082635319-m2gu28pavelpd42o4du4fahn6h90gg4p.apps.googleusercontent.com</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Войти</string>
+    <string name="google_login">Войти через google аккаунт</string>
+    <string name="registration_button">Зарегистрироваться</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

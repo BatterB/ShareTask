@@ -1,4 +1,4 @@
-package com.example.sharetask
+package com.example.data
 
 import org.junit.Test
 
