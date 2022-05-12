@@ -6,8 +6,10 @@
     <string name="title_notifications">Notifications</string>
     <string name="web_client_id">59082635319-m2gu28pavelpd42o4du4fahn6h90gg4p.apps.googleusercontent.com</string>
     <!-- Strings related to login -->
+    <string name="username">Имя пользователя</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_password">Пароль</string>
+    <string name="prompt_repeat_password">Повторите пароль</string>
     <string name="action_sign_in">Войти</string>
     <string name="google_login">Войти через google аккаунт</string>
     <string name="registration_button">Зарегистрироваться</string>
