@@ -1,5 +1,7 @@
 package com.example.shareTask.presentation.authentication
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +20,7 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String){
         viewModelScope.launch {
-            authenticateUserUseCase.signIn(email, password)
+            _isLoginSuccessful.value = authenticateUserUseCase.signIn(email, password)
         }
     }
 

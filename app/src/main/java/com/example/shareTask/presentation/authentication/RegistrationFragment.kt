@@ -1,41 +1,70 @@
 package com.example.shareTask.presentation.authentication
 
+import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.shareTask.databinding.FragmentNotificationsBinding
-import com.example.shareTask.presentation.notifications.NotificationsViewModel
+import androidx.navigation.fragment.findNavController
+import com.example.domain.usecases.AuthenticateUserUseCase
+import com.example.shareTask.R
+import com.example.shareTask.app.ShareTask
+import com.example.shareTask.databinding.FragmentLoginBinding
+import com.example.shareTask.databinding.FragmentRegistrationBinding
+import javax.inject.Inject
 
 class RegistrationFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private lateinit var binding: FragmentRegistrationBinding
 
-    private val binding get() = _binding!!
+    private lateinit var viewModel: RegistrationViewModel
+
+    @Inject
+    lateinit var authenticateUserUseCase: AuthenticateUserUseCase
+
+    @Inject
+    lateinit var authenticationViewModelFactory: AuthenticationViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+        (activity?.applicationContext as ShareTask).appComponent.inject(this)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        binding = FragmentRegistrationBinding.inflate(layoutInflater)
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        viewModel = ViewModelProvider(this, authenticationViewModelFactory)[RegistrationViewModel::class.java]
+
+        setObserver()
+
+        setEventListener()
+
+        return binding.root
+    }
+
+    private fun setObserver(){
+        viewModel.registrationResult.observe(viewLifecycleOwner){
+            if (it != null) {
+                if (it == 1) findNavController().navigate(R.id.action_registrationFragment_to_navigation_home)
+            }
         }
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setEventListener(){
+        binding.registration.setOnClickListener{
+            viewModel.registration(
+                email = binding.emailField.text.toString().trim(' '),
+                password = binding.passwordRegistrationField.text.toString().trim(' '),
+                repeatPassword = binding.repeatPasswordRegistrationField.text.toString().trim(' '),
+                name = binding.usernameField.text.toString().trim(' ')
+            )
+        }
     }
+
 }

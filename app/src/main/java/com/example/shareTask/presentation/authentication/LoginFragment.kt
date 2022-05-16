@@ -1,12 +1,16 @@
 package com.example.shareTask.presentation.authentication
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.domain.usecases.AuthenticateUserUseCase
+import com.example.shareTask.R
 import com.example.shareTask.app.ShareTask
 import com.example.shareTask.databinding.FragmentLoginBinding
 import javax.inject.Inject
@@ -41,10 +45,12 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+
     private fun setObserver() {
         viewModel.isLoginSuccessful.observe(viewLifecycleOwner) {
+            Log.e(TAG,viewModel.isLoginSuccessful.value.toString())
             if (it != null) {
-                if (it == true) activity?.finish()
+                if (it == true) findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
             }
         }
     }
@@ -55,7 +61,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.registrationButton.setOnClickListener {
-            TODO("on registration screen")
+            findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
 

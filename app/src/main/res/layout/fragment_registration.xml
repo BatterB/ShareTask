@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/fragment_vertical_margin"
     android:paddingRight="@dimen/fragment_horizontal_margin"
     android:paddingBottom="@dimen/fragment_vertical_margin"
-    tools:context=".ui.authentication.LoginFragment">
+    tools:context=".ui.authentication.RegistrationFragment">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/registration"
             android:layout_width="239dp"
             android:layout_height="60dp"
             android:layout_below="@+id/repeat_password_registration_field"

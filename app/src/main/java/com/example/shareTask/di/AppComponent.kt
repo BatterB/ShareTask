@@ -1,6 +1,7 @@
 package com.example.shareTask.di
 
 import com.example.shareTask.presentation.authentication.LoginFragment
+import com.example.shareTask.presentation.authentication.RegistrationFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,4 +10,5 @@ import javax.inject.Singleton
      UseCaseModule::class, RepositoryModule::class])
 interface AppComponent {
     fun inject(loginFragment: LoginFragment)
+    fun inject(registrationFragment: RegistrationFragment)
 }
