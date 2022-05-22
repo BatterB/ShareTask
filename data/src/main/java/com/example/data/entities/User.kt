@@ -1,6 +1,7 @@
 package com.example.data.entities
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.domain.models.UserModel
@@ -15,6 +16,10 @@ data class User (
 
     @ColumnInfo(name = "email")
     var email: String,
+
+
+    @ColumnInfo(name = "tasks")
+    var tasks: List<String>
     )
 
 fun User.asDomainModel(): UserModel {

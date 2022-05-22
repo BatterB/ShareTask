@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.data.dao.UserDao
 import com.example.data.entities.User
+import com.example.data.entities.asDomainModel
 import com.example.data.utilities.CollectionNames
 import com.example.data.utilities.convertUserDocumentToEntity
 import com.example.domain.models.UserModel
@@ -32,11 +33,12 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
                     val userId = auth.currentUser!!.uid
                     val newUser = hashMapOf(
                         "name" to name,
-                        "email" to email
+                        "email" to email,
+                        "tasks" to task
                     )
                     isSuccess = true
 
-                    dbUser = User(userId, name, email)
+                    dbUser = User(userId, name, email, mutableListOf())
                     val db = Firebase.firestore
                     db.collection(CollectionNames.users).document(userId)
                         .set(newUser)
@@ -88,8 +90,8 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
         return isSuccess
     }
 
-    override fun getCurrentUser(): UserModel? {
-        TODO("Not yet implemented")
+    override suspend fun getCurrentUser(): UserModel? {
+        return userDao.getCurrentUser()?.asDomainModel()
     }
 
     override suspend fun updateUserProfile(userId: String, name: String, email: String) {
@@ -97,7 +99,9 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
     }
 
     override suspend fun clearUser() {
-        TODO("Not yet implemented")
+        withContext(Dispatchers.IO) {
+            userDao.clear()
+        }
     }
 
 

@@ -17,7 +17,7 @@ interface UserDao {
     fun getById(id: String): Flow<User>
 
     @Query("SELECT * FROM $USER_TABLE LIMIT 1")
-    fun getCurrentUser(): Flow<User?>
+    suspend fun getCurrentUser(): User?
 
     @Query("DELETE FROM  $USER_TABLE")
     suspend fun clear()

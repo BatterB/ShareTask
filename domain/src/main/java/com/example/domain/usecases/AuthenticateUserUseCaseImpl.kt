@@ -1,5 +1,6 @@
 package com.example.domain.usecases
 
+import com.example.domain.models.UserModel
 import com.example.domain.repository.UserRepository
 import javax.inject.Inject
 
@@ -8,6 +9,10 @@ class AuthenticateUserUseCaseImpl @Inject constructor(private val userRepository
 {
     override suspend fun signIn(email: String, password: String) : Boolean {
        return userRepository.authenticate(email,password)
+    }
+
+    override suspend fun getCurrentUser(): UserModel? {
+        return userRepository.getCurrentUser()
     }
 
     override suspend fun signOut() {

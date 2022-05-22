@@ -3,6 +3,7 @@ package com.example.shareTask.di
 import android.content.Context
 import androidx.room.Room
 import com.example.data.ShareTaskDatabase
+import com.example.data.dao.TaskDao
 import com.example.data.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -21,7 +22,14 @@ object DatabaseModule{
     }
 
     @Provides
+    @Singleton
     fun provideUserDao(database: ShareTaskDatabase): UserDao {
         return database.userDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTaskDao(database: ShareTaskDatabase) : TaskDao {
+        return database.taskDao()
     }
 }

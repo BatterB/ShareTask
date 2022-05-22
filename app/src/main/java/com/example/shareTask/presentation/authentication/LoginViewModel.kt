@@ -7,7 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecases.AuthenticateUserUseCase
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -21,6 +25,12 @@ class LoginViewModel @Inject constructor(
     fun login(email: String, password: String){
         viewModelScope.launch {
             _isLoginSuccessful.value = authenticateUserUseCase.signIn(email, password)
+        }
+    }
+
+    fun updateUI(currentUser : FirebaseUser?){
+        if (currentUser != null) {
+            _isLoginSuccessful.value = true
         }
     }
 
