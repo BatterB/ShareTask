@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 class TasksViewModel @Inject constructor(val tasksUseCase: TaskListUseCase) : ViewModel() {
@@ -21,7 +22,13 @@ class TasksViewModel @Inject constructor(val tasksUseCase: TaskListUseCase) : Vi
 
     fun uploadTasks (){
         viewModelScope.launch {
-            tasksUseCase.getTasksList().collect{_taskList.value = it}
+            tasksUseCase.getTasksList().collect{_taskList.value = it }
+        }
+    }
+
+    fun createTask(title : String, priority : String,date: Date){
+        viewModelScope.launch{
+            tasksUseCase.addNewTask(title,priority,date)
         }
     }
 

@@ -11,7 +11,7 @@
     <string name="prompt_password">Пароль</string>
     <string name="prompt_repeat_password">Повторите пароль</string>
     <string name="action_sign_in">Войти</string>
-    <string name="google_login">Войти через google аккаунт</string>
+    <string name="google_login">Google аккаунт</string>
     <string name="registration_button">Зарегистрироваться</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
@@ -19,4 +19,20 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="task_name_holder">Task name holder</string>
+    <string name="title_create_task">Create new task</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_task_title">Task title</string>
+    <string name="hint_priority">Priority:</string>
+    <string name="date_plug">12.03.2003</string>
+    <string name="pick_date">Pick date</string>
+    <string-array name="priority_scale">
+        <item>Very high priority</item>
+        <item>High priority</item>
+        <item>Standard priority</item>
+        <item>Low priority</item>
+        <item>Very low priority</item>
+    </string-array>
+    <string name="cancel">Cancel</string>
+    <string name="create_task">Create</string>
+    <string name="task_point_holder">Task point</string>
 </resources>
