@@ -11,13 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/title_create_task"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/title_new_task"
+        style="?attr/textInputFilledStyle"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="text"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="top"
+        app:endIconMode="clear_text"
+        android:minWidth="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_task_title"
+        app:startIconContentDescription="@string/content_description_start_icon">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_task_title" />
+
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:id="@+id/text_view_task_title"
         android:layout_width="match_parent"
@@ -25,19 +46,11 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/hint_task_title"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/title_create_task" />
 
-    <EditText
-        android:id="@+id/title_new_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:hint="@string/hint_task_title"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_task_title" />
+
     <TextView
         android:id="@+id/date_text_view"
         android:layout_width="wrap_content"
@@ -46,7 +59,7 @@
         android:fontFamily="sans-serif-medium"
         android:layout_marginTop="20dp"
         android:textSize="20sp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_new_task" />
 
@@ -65,7 +78,7 @@
         android:fontFamily="sans-serif-medium"
         android:text="@string/date_plug"
         android:textSize="20sp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier" />
 
@@ -74,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="16dp"
         android:text="@string/pick_date"
         app:layout_constraintBottom_toTopOf="@id/barrier2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,25 +107,32 @@
         android:id="@+id/priority_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hint_priority"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="sans-serif-medium"
-        android:layout_marginTop="20dp"
+        android:text="@string/hint_priority"
         android:textSize="20sp"
-        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
-    <Spinner
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
         android:id="@+id/spinner_priority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
         android:layout_marginTop="23dp"
-        android:entries="@array/priority_scale"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/priority_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/barrier2" />
+        app:layout_constraintTop_toBottomOf="@+id/barrier2">
+        <AutoCompleteTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:hint="@string/spinner_priority_hint"
+            app:simpleItems="@array/priority_scale"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier3"
@@ -128,7 +148,7 @@
         android:layout_marginTop="8dp"
         android:background="#00AAAAAA"
         android:text="@string/cancel"
-        android:textColor="@color/royal_blue"
+        android:textColor="@color/md_theme_light_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,11 +158,11 @@
         android:id="@+id/button_create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:background="#00AAAAAA"
         android:text="@string/create_task"
-        android:textColor="@color/royal_blue"
+        android:textColor="@color/md_theme_light_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/button_cancel"

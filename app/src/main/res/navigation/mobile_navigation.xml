@@ -15,7 +15,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.shareTask.presentation.authentication.LoginFragment"
         android:label="Login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_navigation_home"
             app:destination="@id/navigation_task" />
@@ -34,7 +34,12 @@
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.shareTask.presentation.settings.SettingFragment"
+        android:name="com.example.shareTask.presentation.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/taskWindowFragment"
+        android:name="com.example.shareTask.presentation.taskWindow.TaskWindowFragment"
+        android:label="Task"
+        tools:layout="@layout/fragment_task_window" />
 </navigation>

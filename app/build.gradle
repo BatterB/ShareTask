@@ -46,6 +46,7 @@ dependencies {
     //Google Firebase
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'androidx.preference:preference:1.1.1'
     //Dagger
     def daggerVer = 2.42
 

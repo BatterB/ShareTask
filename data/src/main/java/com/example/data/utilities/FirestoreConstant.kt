@@ -1,7 +1,5 @@
 package com.example.data.utilities
 
-import java.sql.Timestamp
-
 object CollectionNames {
     const val users = "users"
     const val tasks = "tasks"

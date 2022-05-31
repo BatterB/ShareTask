@@ -30,7 +30,7 @@
             android:lines="1"
             android:padding="15dp"
             android:text="@string/task_name_holder"
-            android:textColor="@color/white"
+            android:textColor="@color/md_theme_light_onSecondary"
             android:textSize="23sp"
             app:layout_constraintEnd_toStartOf="@+id/more_button"
             app:layout_constraintStart_toStartOf="parent"

@@ -7,15 +7,15 @@ import java.util.*
 
 class Converters {
     @TypeConverter
-    fun converterMapToJson(map: Map<String,Boolean>) : String?{
-        return Gson().toJson(map)
+    fun converterListOfListToJson(list : List<List<String>>) : String?{
+        return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun converterJsonToMap(string: String) :Map<String,Boolean>{
+    fun converterJsonToListOfList(string: String) : List<List<String>>{
         return Gson().fromJson(
             string,
-            object : TypeToken<Map<String,Boolean>>() {}.type
+            object : TypeToken<List<List<String>>>() {}.type
         )
     }
 

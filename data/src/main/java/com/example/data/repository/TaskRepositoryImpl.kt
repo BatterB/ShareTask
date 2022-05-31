@@ -9,17 +9,20 @@ import com.example.data.entities.User
 import com.example.data.entities.asDomainModel
 import com.example.data.utilities.CollectionNames
 import com.example.data.utilities.convertTaskDocumentToEntity
+import com.example.data.utilities.converterListOfListToJson
 import com.example.domain.models.TaskModel
 import com.example.domain.repository.TaskRepository
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -54,12 +57,9 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val newTask = hashMapOf(
             "title" to title,
             "priority" to priority,
-            "task_points" to mapOf<String,Boolean>(),
+            "task_points" to converterListOfListToJson(listOf()),
             "date" to Timestamp(date)
         )
-
-
-
 
         val user: User? = userDao.getCurrentUser()
         val newTaskList = user?.tasks?.toMutableList()
@@ -75,9 +75,9 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         )
 
         newTaskList?.add(generatedDoc.id)
+        taskDao.insert(Task(generatedDoc.id,title,date, listOf(),priority.toLong()))
         user.tasks = newTaskList!!.toList()
-        userDao.insert(user)
-
+        userDao.updateUser(user)
         return isSuccess
     }
 
@@ -95,6 +95,12 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         newTaskList.removeAt(newTaskList.indexOf(id))
         user.tasks = newTaskList.toList()
         userDao.insert(user)
+    }
+
+    override suspend fun updateTaskFromLocalDB(): Flow<List<TaskModel>?> {
+        val user: User? = userDao.getCurrentUser()
+        val tasksIds = user?.tasks
+        return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
     }
 
 }

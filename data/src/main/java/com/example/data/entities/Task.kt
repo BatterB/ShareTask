@@ -18,7 +18,7 @@ data class Task(
     var date: Date,
 
     @ColumnInfo(name = "task_points")
-    var taskPoints: Map<String,Boolean>,
+    var taskPoints: List<List<String>>,
 
     @ColumnInfo(name = "priority")
     var priority: Long

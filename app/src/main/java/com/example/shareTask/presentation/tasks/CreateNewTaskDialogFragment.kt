@@ -59,8 +59,8 @@ class CreateNewTaskDialogFragment : DialogFragment(){
         }
 
         binding.buttonCreate.setOnClickListener{
-            val title = binding.titleNewTask.text.toString()
-            val priority = binding.spinnerPriority.selectedItem.toString()
+            val title = binding.titleNewTask.editText?.text.toString()
+            val priority = binding.spinnerPriority.editText?.text.toString()
             val textDate = binding.dateText.text.toString()
             val date : Date = SimpleDateFormat("dd.MM.yyyy",Locale.US).parse(textDate) as Date
             viewModel.createTask(title, priority, date)

@@ -2,11 +2,7 @@
     android:thickness="0dp"
     android:shape="rectangle">
     <stroke android:width="3dp"
-        android:color="@color/royal_blue"/>
-    <corners android:radius="10dp" />
-    <gradient
-        android:startColor="#564169E1"
-        android:endColor="#564169E1"
-        android:type="linear"
-        android:angle="270"/>
+        android:color="@color/md_theme_light_secondary"/>
+    <corners android:radius="5dp" />
+    <solid android:color="@color/md_theme_light_onSecondary" />
 </shape>

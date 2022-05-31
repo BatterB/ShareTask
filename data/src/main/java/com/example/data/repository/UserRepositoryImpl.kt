@@ -34,7 +34,7 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
                     val newUser = hashMapOf(
                         "name" to name,
                         "email" to email,
-                        "tasks" to task
+                        "tasks" to mutableListOf<String>()
                     )
                     isSuccess = true
 

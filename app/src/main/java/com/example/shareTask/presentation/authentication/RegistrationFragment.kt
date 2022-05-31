@@ -16,6 +16,7 @@ import com.example.shareTask.R
 import com.example.shareTask.app.ShareTask
 import com.example.shareTask.databinding.FragmentLoginBinding
 import com.example.shareTask.databinding.FragmentRegistrationBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import javax.inject.Inject
 
 class RegistrationFragment : Fragment() {
@@ -51,7 +52,11 @@ class RegistrationFragment : Fragment() {
     private fun setObserver(){
         viewModel.registrationResult.observe(viewLifecycleOwner){
             if (it != null) {
-                if (it == 1) findNavController().navigate(R.id.action_registrationFragment_to_navigation_home)
+                if (it == 1) {
+                    findNavController().navigate(R.id.action_registrationFragment_to_navigation_home)
+                    val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+                    bottomNavigation?.visibility = View.VISIBLE
+                }
             }
         }
     }

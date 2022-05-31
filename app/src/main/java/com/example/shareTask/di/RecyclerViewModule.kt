@@ -1,5 +1,6 @@
 package com.example.shareTask.di
 
+import com.example.shareTask.presentation.taskWindow.TaskWindowAdapter
 import com.example.shareTask.presentation.tasks.TaskActionListener
 import com.example.shareTask.presentation.tasks.TaskActionListenerImpl
 import com.example.shareTask.presentation.tasks.TasksAdapter
@@ -17,5 +18,10 @@ class RecyclerViewModule {
     @Provides
     fun provideTaskActionListener() : TaskActionListener{
         return TaskActionListenerImpl()
+    }
+
+    @Provides
+    fun provideTaskWindowAdapter() : TaskWindowAdapter{
+        return TaskWindowAdapter()
     }
 }
