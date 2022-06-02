@@ -34,6 +34,7 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val user: User? = userDao.getCurrentUser()
         val tasksIds = user?.tasks
         val allTasks = mutableListOf<Task>()
+        taskDao.clear()
 
         db.collection(CollectionNames.tasks)
             .get()
@@ -46,6 +47,7 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
                 Log.w(TAG, "Error getting documents.", exception)
             }.await()
         taskDao.insertAll(allTasks)
+        println(user)
 
         return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
     }
@@ -68,16 +70,20 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
 
         generatedDoc.set(newTask)
             .addOnSuccessListener { isSuccess = true }
-            .addOnFailureListener { Log.e(TAG, "Error writing document") }
+            .addOnFailureListener { Log.e(TAG, "Error writing document") }.await()
 
         userTasks.update(
             "tasks", FieldValue.arrayUnion(generatedDoc.id)
-        )
+        ).await()
 
         newTaskList?.add(generatedDoc.id)
-        taskDao.insert(Task(generatedDoc.id,title,date, listOf(),priority.toLong()))
+
+        taskDao.insert(Task(generatedDoc.id, title, date, listOf(), priority.toLong()))
+
         user.tasks = newTaskList!!.toList()
+
         userDao.updateUser(user)
+
         return isSuccess
     }
 

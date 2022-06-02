@@ -72,4 +72,9 @@ class RegistrationFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModelStore.clear()
+    }
+
 }

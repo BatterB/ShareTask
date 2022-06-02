@@ -9,12 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.TaskModel
 import com.example.shareTask.R
 import com.example.shareTask.databinding.TasksItemBinding
-import javax.inject.Inject
 
+interface TaskActionListener {
 
-class TasksAdapter @Inject constructor(
-    private val taskActionListener: TaskActionListener
-): RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), View.OnClickListener {
+    fun onOpenTask(task : TaskModel,view : View)
+
+    fun onShareTask(task: TaskModel)
+
+    fun onDeleteTask(task : TaskModel)
+}
+
+class TasksAdapter : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), View.OnClickListener {
+
+    lateinit var taskActionListener: TaskActionListener
 
     var tasks : MutableList<TaskModel> = mutableListOf()
         set (newValue){
@@ -67,8 +74,8 @@ class TasksAdapter @Inject constructor(
 
         popupMenu.setOnMenuItemClickListener {
             when(it.itemId){
-                1 -> println(1)
-                2 -> println(2)
+                1 -> taskActionListener.onDeleteTask(task)
+                2 -> taskActionListener.onShareTask(task)
             }
             return@setOnMenuItemClickListener true
         }

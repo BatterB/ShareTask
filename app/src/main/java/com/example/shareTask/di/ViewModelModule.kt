@@ -18,19 +18,16 @@ class ViewModelModule(private val context: Context) {
     }
 
     @Provides
-    @Singleton
     fun provideTaskViewModel (taskListUseCaseImpl: TaskListUseCase) : TasksViewModelFactory{
         return TasksViewModelFactory(taskListUseCaseImpl)
     }
 
     @Provides
-    @Singleton
     fun provideTaskWindowViewModel () : TaskWindowViewModelFactory {
         return TaskWindowViewModelFactory()
     }
 
     @Provides
-    @Singleton
     fun provideSettingsViewModel (authenticateUserUseCase : AuthenticateUserUseCase) : SettingsViewModelFactory {
         return SettingsViewModelFactory(authenticateUserUseCase)
     }

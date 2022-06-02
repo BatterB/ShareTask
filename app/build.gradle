@@ -32,8 +32,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
     buildFeatures{
-        viewBinding = true
+        dataBinding true
+        viewBinding true
+
     }
 }
 
@@ -46,7 +50,7 @@ dependencies {
     //Google Firebase
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference:1.2.0'
     //Dagger
     def daggerVer = 2.42
 
@@ -70,4 +74,6 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    kapt "com.android.databinding:compiler:3.1.4"
 }

@@ -1,6 +1,5 @@
 package com.example.shareTask.presentation.tasks
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,23 +8,27 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.utilities.converterTaskModelToJson
+import com.example.domain.models.TaskModel
 import com.example.shareTask.R
 import com.example.shareTask.app.ShareTask
 import com.example.shareTask.databinding.FragmentTasksBinding
+import com.example.shareTask.presentation.tasks.dialogs.CreateNewTaskDialogFragment
+import com.example.shareTask.presentation.tasks.dialogs.GetFriendTaskDialogFragment
+import com.example.shareTask.presentation.tasks.dialogs.ShareWithFriendDialogFragment
 import javax.inject.Inject
 
 
-class TasksFragment : Fragment() {
+class TasksFragment : Fragment(), TaskActionListener {
 
     private var _binding: FragmentTasksBinding? = null
 
     private val binding get() = _binding!!
 
     private lateinit var viewModel : TasksViewModel
-
-    private lateinit var dialogFragment: CreateNewTaskDialogFragment
 
     @Inject
     lateinit var tasksViewModelFactory: TasksViewModelFactory
@@ -51,9 +54,9 @@ class TasksFragment : Fragment() {
     ): View {
 
         (activity?.applicationContext as ShareTask).appComponent.inject(this)
-        viewModel = ViewModelProvider(this,tasksViewModelFactory)[TasksViewModel::class.java]
+        viewModel = ViewModelProvider(this, tasksViewModelFactory)[TasksViewModel::class.java]
         _binding = FragmentTasksBinding.inflate(inflater, container, false)
-        dialogFragment = CreateNewTaskDialogFragment()
+        adapter.taskActionListener = this
 
         fabOpen = AnimationUtils.loadAnimation(context, R.anim.fab_open)
         fabClose = AnimationUtils.loadAnimation(context, R.anim.fab_close)
@@ -67,15 +70,25 @@ class TasksFragment : Fragment() {
 
         setObserver()
         setListener()
-        viewModel.uploadTasks()
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.uploadTasks()
     }
     private fun setListener(){
         binding.mainFAB.setOnClickListener{
             animateFab()
         }
         binding.createNewTask.setOnClickListener{
+            val dialogFragment = CreateNewTaskDialogFragment()
+            dialogFragment.show(childFragmentManager,"Dialog")
+        }
+
+        binding.getFriendTask.setOnClickListener{
+            val dialogFragment = GetFriendTaskDialogFragment()
             dialogFragment.show(childFragmentManager,"Dialog")
         }
 
@@ -99,10 +112,12 @@ class TasksFragment : Fragment() {
             }
         })
     }
+
     private fun setObserver() {
         viewModel.taskList.observe(viewLifecycleOwner){
             if ( it != null){
                 adapter.tasks = it.toMutableList()
+                println(it)
             }
         }
     }
@@ -124,9 +139,26 @@ class TasksFragment : Fragment() {
             isOpen = true
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        viewModelStore.clear()
+    }
+
+    override fun onOpenTask(task: TaskModel, view: View) {
+        val bundle = Bundle()
+        bundle.putString("ARG_TASK", converterTaskModelToJson(task))
+        Navigation.findNavController(view).navigate(R.id.taskWindowFragment, bundle)
+    }
+
+    override fun onShareTask(task: TaskModel) {
+        val dialog = ShareWithFriendDialogFragment(task.id)
+        dialog.show(childFragmentManager,"Dialog")
+    }
+
+    override fun onDeleteTask(task: TaskModel) {
+        viewModel.deleteTask(task)
     }
 
 

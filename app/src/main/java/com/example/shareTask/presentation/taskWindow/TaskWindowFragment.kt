@@ -48,4 +48,9 @@ class TaskWindowFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModelStore.clear()
+    }
 }

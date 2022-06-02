@@ -1,16 +1,16 @@
-package com.example.shareTask.presentation.tasks
+package com.example.shareTask.presentation.tasks.dialogs
 
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.shareTask.R
 import com.example.shareTask.app.ShareTask
 import com.example.shareTask.databinding.DialogFragmentCreateNewTaskBinding
+import com.example.shareTask.presentation.tasks.TasksViewModel
+import com.example.shareTask.presentation.tasks.TasksViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -64,11 +64,11 @@ class CreateNewTaskDialogFragment : DialogFragment(){
             val textDate = binding.dateText.text.toString()
             val date : Date = SimpleDateFormat("dd.MM.yyyy",Locale.US).parse(textDate) as Date
             viewModel.createTask(title, priority, date)
-            dismiss()
+            dialog?.dismiss()
         }
 
         binding.buttonCancel.setOnClickListener{
-            dismiss()
+            dialog?.dismiss()
         }
     }
 

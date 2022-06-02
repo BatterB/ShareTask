@@ -33,5 +33,4 @@ class LoginViewModel @Inject constructor(
             _isLoginSuccessful.value = true
         }
     }
-
 }

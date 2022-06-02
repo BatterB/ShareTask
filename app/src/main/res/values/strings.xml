@@ -39,4 +39,12 @@
     <string name="share">Share</string>
     <string name="content_description_start_icon">Title</string>
     <string name="spinner_priority_hint">Priority</string>
+    <string name="share_with_friend_title">Share task with friend</string>
+    <string name="share_task_with_friend_hint">In order to share copy the code:</string>
+    <string name="share_task_with_friend_holder">D3hJ34BbC32s</string>
+    <string name="ok">OK</string>
+    <string name="get_friend_task_title">Get friend task</string>
+    <string name="get_friend_task_hint">Paste the friend code to add the task:</string>
+    <string name="get_friend_task_holder">Code</string>
+    <string name="add_button">Add</string>
 </resources>

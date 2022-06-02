@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.domain.usecases.AuthenticateUserUseCase
 import com.example.shareTask.R
@@ -16,6 +17,9 @@ import com.example.shareTask.databinding.FragmentLoginBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -42,6 +46,14 @@ class LoginFragment : Fragment() {
 
         val currentUser = auth.currentUser
         viewModel.updateUI(currentUser)
+        var cnt = 0
+        viewModel.viewModelScope.launch {
+            while (true) {
+                delay(2000)
+                cnt++
+                println(cnt)
+            }
+        }
 
         setObserver()
         setEventListener()
@@ -70,6 +82,11 @@ class LoginFragment : Fragment() {
         binding.registrationButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModelStore.clear()
     }
 
 }

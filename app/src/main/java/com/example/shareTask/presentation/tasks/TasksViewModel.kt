@@ -4,6 +4,7 @@ import androidx.lifecycle.*
 import com.example.domain.models.TaskModel
 import com.example.domain.usecases.TaskListUseCase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.cancellable
 import java.util.*
 import javax.inject.Inject
 
@@ -19,16 +20,20 @@ class TasksViewModel @Inject constructor(val tasksUseCase: TaskListUseCase) : Vi
         }
     }
 
+    fun deleteTask(task : TaskModel){
+        viewModelScope.launch {
+            tasksUseCase.deleteTask(task.id)
+        }
+    }
+
+
     fun createTask(title : String, priority : String,date: Date) {
-        GlobalScope.launch{
-            withContext(Dispatchers.IO) {
-                tasksUseCase.addNewTask(title, priority, date)
-            }
-            delay(300)
+        viewModelScope.launch{
+            tasksUseCase.addNewTask(title, priority, date)
             tasksUseCase.updateTaskFromLocalDB().collect {
                 _taskList.postValue(it)
-                println(it)
             }
+
         }
     }
 }
