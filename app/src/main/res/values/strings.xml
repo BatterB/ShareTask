@@ -5,13 +5,13 @@
     <string name="title_note">Note</string>
     <string name="title_settings">Settings</string>
     <!-- Strings related to login -->
-    <string name="username">Имя пользователя</string>
+    <string name="username">Username</string>
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Пароль</string>
-    <string name="prompt_repeat_password">Повторите пароль</string>
-    <string name="action_sign_in">Войти</string>
-    <string name="google_login">Google аккаунт</string>
-    <string name="registration_button">Зарегистрироваться</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_repeat_password">Repeat password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="google_login">Google account</string>
+    <string name="registration_button">Registration</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -47,4 +47,10 @@
     <string name="get_friend_task_hint">Paste the friend code to add the task:</string>
     <string name="get_friend_task_holder">Code</string>
     <string name="add_button">Add</string>
+    <string name="settings_welcome">Glad to see you, </string>
+    <string name="language_setting">Language</string>
+    <string name="exit_setting">Exit</string>
+    <string name="theme_setting">Themes</string>
+    <string name="about_setting">About</string>
+    <string name="new_task_point_holder">Task point name</string>
 </resources>

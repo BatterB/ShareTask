@@ -9,4 +9,5 @@ interface TaskListUseCase {
     suspend fun addNewTask(title: String,priority : String,date: Date) : Boolean
     suspend fun deleteTask(id : String)
     suspend fun updateTaskFromLocalDB() : Flow<List<TaskModel>?>
+    suspend fun addTaskPoint(taskPoint : String, taskId : String) : List<List<String>>
 }

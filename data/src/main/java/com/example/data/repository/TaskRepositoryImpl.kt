@@ -16,13 +16,10 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
 
@@ -47,7 +44,6 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
                 Log.w(TAG, "Error getting documents.", exception)
             }.await()
         taskDao.insertAll(allTasks)
-        println(user)
 
         return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
     }
@@ -68,22 +64,32 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val generatedDoc = db.collection(CollectionNames.tasks).document()
         val userTasks = db.collection(CollectionNames.users).document(user!!.id)
 
-        generatedDoc.set(newTask)
-            .addOnSuccessListener { isSuccess = true }
-            .addOnFailureListener { Log.e(TAG, "Error writing document") }.await()
+        coroutineScope {
+            async{
+                generatedDoc.set(newTask)
+                    .addOnSuccessListener { isSuccess = true }
+                    .addOnFailureListener { Log.e(TAG, "Error writing document") }
+            }
 
-        userTasks.update(
-            "tasks", FieldValue.arrayUnion(generatedDoc.id)
-        ).await()
+            async{
+                userTasks.update(
+                    "tasks", FieldValue.arrayUnion(generatedDoc.id)
+                )
+            }
 
-        newTaskList?.add(generatedDoc.id)
+            async{
+                newTaskList?.add(generatedDoc.id)
 
-        taskDao.insert(Task(generatedDoc.id, title, date, listOf(), priority.toLong()))
+                user.tasks = newTaskList!!.toList()
 
-        user.tasks = newTaskList!!.toList()
+                userDao.updateUser(user)
+            }
 
-        userDao.updateUser(user)
+            async {
+                taskDao.insert(Task(generatedDoc.id, title, date, listOf(), priority.toLong()))
+            }
 
+        }
         return isSuccess
     }
 
@@ -107,6 +113,30 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val user: User? = userDao.getCurrentUser()
         val tasksIds = user?.tasks
         return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
+    }
+
+    override suspend fun addTaskPoint(taskPoint : String, taskId : String) : List<List<String>> {
+        val taskDocument = db.collection(CollectionNames.tasks).document(taskId)
+        val newPoint = listOf(taskPoint,"false")
+        var task : Task? = null
+        taskDocument.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    task = convertTaskDocumentToEntity(document)
+                    val newPointsList = task!!.taskPoints.toMutableList()
+                    newPointsList.add(newPoint)
+                    task!!.taskPoints = newPointsList
+                    taskDocument.update("task_points", converterListOfListToJson(task!!.taskPoints))
+                } else {
+                    Log.d(TAG, "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "failed", exception)
+            }.await()
+        if(task != null)
+            taskDao.insert(task!!)
+        return task!!.taskPoints
     }
 
 }

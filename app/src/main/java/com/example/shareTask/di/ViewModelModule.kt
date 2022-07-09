@@ -23,8 +23,8 @@ class ViewModelModule(private val context: Context) {
     }
 
     @Provides
-    fun provideTaskWindowViewModel () : TaskWindowViewModelFactory {
-        return TaskWindowViewModelFactory()
+    fun provideTaskWindowViewModel (taskListUseCaseImpl: TaskListUseCase) : TaskWindowViewModelFactory {
+        return TaskWindowViewModelFactory(taskListUseCaseImpl)
     }
 
     @Provides

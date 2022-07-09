@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -19,10 +20,11 @@ import com.example.shareTask.databinding.FragmentTasksBinding
 import com.example.shareTask.presentation.tasks.dialogs.CreateNewTaskDialogFragment
 import com.example.shareTask.presentation.tasks.dialogs.GetFriendTaskDialogFragment
 import com.example.shareTask.presentation.tasks.dialogs.ShareWithFriendDialogFragment
+import java.util.*
 import javax.inject.Inject
 
 
-class TasksFragment : Fragment(), TaskActionListener {
+class TasksFragment : Fragment(), TaskActionListener, CreateNewTaskDialogFragment.TaskCreate{
 
     private var _binding: FragmentTasksBinding? = null
 
@@ -83,7 +85,7 @@ class TasksFragment : Fragment(), TaskActionListener {
             animateFab()
         }
         binding.createNewTask.setOnClickListener{
-            val dialogFragment = CreateNewTaskDialogFragment()
+            val dialogFragment = CreateNewTaskDialogFragment(this)
             dialogFragment.show(childFragmentManager,"Dialog")
         }
 
@@ -114,10 +116,9 @@ class TasksFragment : Fragment(), TaskActionListener {
     }
 
     private fun setObserver() {
-        viewModel.taskList.observe(viewLifecycleOwner){
-            if ( it != null){
-                adapter.tasks = it.toMutableList()
-                println(it)
+        viewModel.taskList.observe(viewLifecycleOwner){ list ->
+            if ( list != null){
+                adapter.tasks = list.sortedWith(compareBy{it.priority}).toMutableList()
             }
         }
     }
@@ -159,6 +160,10 @@ class TasksFragment : Fragment(), TaskActionListener {
 
     override fun onDeleteTask(task: TaskModel) {
         viewModel.deleteTask(task)
+    }
+
+    override fun taskCreate(title: String, priority: String, date: Date) {
+        viewModel.createTask(title,priority,date)
     }
 
 

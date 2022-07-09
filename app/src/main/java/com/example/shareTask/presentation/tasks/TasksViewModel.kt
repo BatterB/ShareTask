@@ -36,4 +36,8 @@ class TasksViewModel @Inject constructor(val tasksUseCase: TaskListUseCase) : Vi
 
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

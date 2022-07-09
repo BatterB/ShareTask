@@ -4,6 +4,7 @@ import com.example.domain.models.UserModel
 import com.example.domain.repository.UserRepository
 import javax.inject.Inject
 
+
 class AuthenticateUserUseCaseImpl @Inject constructor(private val userRepository: UserRepository) :
     AuthenticateUserUseCase
 {

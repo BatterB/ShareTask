@@ -9,10 +9,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_light_secondaryContainer"
         android:paddingBottom="80dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:layout_editor_absoluteX="16dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/main_FAB"
@@ -49,4 +52,15 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/get_friend_task"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="25sp"
+        android:text="Your tasks"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

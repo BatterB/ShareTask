@@ -58,4 +58,11 @@
     <color name="royal_blue">#4169E1</color>
     <color name="green">#639423</color>
     <color name="greenOpacity">#99639423</color>
+    <color name="very_high_priority">#37367A</color>
+    <color name="high_priority">#4847A1</color>
+    <color name="medium_priority">#5251B9</color>
+    <color name="low_priority">#5958C7</color>
+    <color name="very_low_priority">#6258C7</color>
+
+
 </resources>

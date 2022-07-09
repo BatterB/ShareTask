@@ -10,6 +10,7 @@
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/edit_text_style.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic__080516_checkbox_icon.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic___checkbox_custom_checked.xml" value="0.121" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic__exit.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_baseline_add.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_checkbox_.xml" value="0.121" />
@@ -17,30 +18,41 @@
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_checkbox_custom_unchecked.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_create_new.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.236" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_exit.xml" value="0.129" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_get_shared.xml" value="0.129" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.236" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_info.xml" value="0.236" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_language_setting.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_launcher_background.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_more.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_note.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.236" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_premium.xml" value="0.129" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_settings.xml" value="0.121" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_task.xml" value="0.121" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/ic_theme.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/radio_button_custom.xml" value="0.12" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/radio_button_custom_unchecked.xml" value="0.12" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/share_plate_style.xml" value="0.1495" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate.xml" value="0.236" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate_high.xml" value="0.129" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate_low.xml" value="0.129" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate_medium.xml" value="0.129" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate_very_high.xml" value="0.129" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/task_plate_very_low.xml" value="0.129" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/activity_main.xml" value="0.17988826815642459" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/dialog_fragment_create_new_task.xml" value="0.2" />
-        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/dialog_fragment_get_friend_task.xml" value="0.536" />
-        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/dialog_fragment_share_with_friend.xml" value="0.72" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/dialog_fragment_get_friend_task.xml" value="0.264" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/dialog_fragment_share_with_friend.xml" value="0.264" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_dashboard.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_home.xml" value="0.24547101449275363" />
-        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_login.xml" value="0.4" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_notifications.xml" value="0.10989583333333333" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_registration.xml" value="0.2" />
-        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_settings.xml" value="0.10989583333333333" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_settings.xml" value="0.176" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_task_window.xml" value="0.264" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/fragment_tasks.xml" value="0.2747395833333333" />
-        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/task_point.xml" value="0.264" />
+        <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/task_point.xml" value="0.176" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/layout/tasks_item.xml" value="0.264" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/menu/bottom_nav_menu.xml" value="0.176" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/menu/fab_open.xml" value="0.13854166666666667" />

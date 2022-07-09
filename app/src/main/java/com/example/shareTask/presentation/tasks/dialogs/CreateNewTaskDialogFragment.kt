@@ -7,24 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.shareTask.app.ShareTask
 import com.example.shareTask.databinding.DialogFragmentCreateNewTaskBinding
 import com.example.shareTask.presentation.tasks.TasksViewModel
 import com.example.shareTask.presentation.tasks.TasksViewModelFactory
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class CreateNewTaskDialogFragment : DialogFragment(){
+class CreateNewTaskDialogFragment(val taskCreate : TaskCreate) : DialogFragment(){
+
+    interface TaskCreate{
+        fun taskCreate(title : String, priority : String, date: Date)
+    }
 
     private var _binding: DialogFragmentCreateNewTaskBinding? = null
 
     private val binding get() = _binding!!
-
-    private lateinit var viewModel : TasksViewModel
-
-    @Inject
-    lateinit var tasksViewModelFactory: TasksViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +35,6 @@ class CreateNewTaskDialogFragment : DialogFragment(){
         (activity?.applicationContext as ShareTask).appComponent.inject(this)
 
         _binding = DialogFragmentCreateNewTaskBinding.inflate(layoutInflater)
-
-        viewModel = ViewModelProvider(this,tasksViewModelFactory)[TasksViewModel::class.java]
 
         setEventListener()
 
@@ -63,7 +62,9 @@ class CreateNewTaskDialogFragment : DialogFragment(){
             val priority = binding.spinnerPriority.editText?.text.toString()
             val textDate = binding.dateText.text.toString()
             val date : Date = SimpleDateFormat("dd.MM.yyyy",Locale.US).parse(textDate) as Date
-            viewModel.createTask(title, priority, date)
+
+            taskCreate.taskCreate(title, priority, date)
+
             dialog?.dismiss()
         }
 

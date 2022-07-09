@@ -8,23 +8,53 @@
     android:scrollbars="vertical"
     tools:context=".presentation.taskWindow.TaskWindowFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_task_point"
+        android:layout_width="405dp"
+        android:visibility="gone"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <EditText
+            android:id="@+id/new_task_point_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:hint="@string/new_task_point_holder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="32dp"
+            android:text="@string/ok" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:scrollbarAlwaysDrawVerticalTrack="true"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="@id/divider2"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/button_new_task_point" />
 
     <TextView
         android:id="@+id/task_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/task_name_holder"
+        android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
-        android:textSize="35sp"
+        android:text="@string/task_name_holder"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,17 +68,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_title" />
 
-    <TextView
-        android:id="@+id/new_task_point"
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:gravity="center"
+    <Button
+        android:id="@+id/button_new_task_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
         android:text="@string/new_task_point"
-        android:layout_marginBottom="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+        app:layout_constraintTop_toBottomOf="@+id/new_task_point" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

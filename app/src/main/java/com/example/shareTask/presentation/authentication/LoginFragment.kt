@@ -46,14 +46,6 @@ class LoginFragment : Fragment() {
 
         val currentUser = auth.currentUser
         viewModel.updateUI(currentUser)
-        var cnt = 0
-        viewModel.viewModelScope.launch {
-            while (true) {
-                delay(2000)
-                cnt++
-                println(cnt)
-            }
-        }
 
         setObserver()
         setEventListener()

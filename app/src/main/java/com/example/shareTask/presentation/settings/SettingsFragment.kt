@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -35,8 +36,10 @@ class SettingsFragment : Fragment() {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         viewModel = ViewModelProvider(this,settingsViewModelFactory)[SettingsViewModel::class.java]
-
+        setObserver()
         setEventListener()
+
+        viewModel.welcomeText()
 
         return binding.root
     }
@@ -47,6 +50,12 @@ class SettingsFragment : Fragment() {
             findNavController().navigate(R.id.loginFragment)
             val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
             bottomNavigation?.visibility = View.GONE
+        }
+    }
+
+    private fun setObserver(){
+        viewModel.userName.observe(viewLifecycleOwner){
+            binding.welcomeText.text = getString(R.string.settings_welcome)+ " "+ it
         }
     }
     override fun onDestroyView() {

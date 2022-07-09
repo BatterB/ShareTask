@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.models.TaskModel
 import com.example.shareTask.R
@@ -43,6 +44,14 @@ class TasksAdapter : RecyclerView.Adapter<TasksAdapter.TaskViewHolder>(), View.O
             holder.itemView.tag = task
             moreButton.tag = task
             taskName.text = task.title
+            val background  = when (task.priority.toInt()){
+                1 -> R.drawable.task_plate_very_low
+                2 -> R.drawable.task_plate_low
+                3 -> R.drawable.task_plate_medium
+                4 -> R.drawable.task_plate_high
+                else -> R.drawable.task_plate_very_high
+            }
+            taskItemPlate.background = ContextCompat.getDrawable(root.context,background)
         }
     }
 

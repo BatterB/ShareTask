@@ -30,4 +30,8 @@ class TaskListUseCaseImpl @Inject constructor(val taskRepository: TaskRepository
     override suspend fun updateTaskFromLocalDB(): Flow<List<TaskModel>?> {
         return taskRepository.updateTaskFromLocalDB()
     }
+
+    override suspend fun addTaskPoint(taskPoint: String, taskId: String) : List<List<String>> {
+        return taskRepository.addTaskPoint(taskPoint, taskId)
+    }
 }

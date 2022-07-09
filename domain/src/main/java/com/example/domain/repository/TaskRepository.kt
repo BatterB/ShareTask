@@ -10,4 +10,5 @@ interface TaskRepository {
     suspend fun addNewTask(title: String,priority :Int,date: Date) : Boolean
     suspend fun deleteTask(id:String)
     suspend fun updateTaskFromLocalDB() : Flow<List<TaskModel>?>
+    suspend fun addTaskPoint(taskPoint : String,taskId : String) : List<List<String>>
 }
