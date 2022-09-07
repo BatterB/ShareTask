@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/activity_main.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/dialog_fragment_share_with_friend.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/fragment_login.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/fragment_task_window.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/fragment_tasks.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/task_point.xml" value="0.24547101449275363" />
+        <entry key="..\:/Users/dimae/AndroidStudioProjects/ShareTask/app/src/main/res/layout/tasks_item.xml" value="0.24547101449275363" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.236" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/checkbox_custom.xml" value="0.1495" />
         <entry key="..\:/Users/dimae/prak2TRPP/ShareTask/app/src/main/res/drawable/checkbox_custom_unchecked.xml" value="0.121" />

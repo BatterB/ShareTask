@@ -23,7 +23,8 @@ import kotlinx.coroutines.tasks.await
 import java.util.*
 import javax.inject.Inject
 
-class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val userDao: UserDao) : TaskRepository{
+class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val userDao: UserDao) :
+    TaskRepository {
 
     private val db = Firebase.firestore
 
@@ -45,11 +46,12 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
             }.await()
         taskDao.insertAll(allTasks)
 
-        return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
+        return taskDao.getUserTasks(tasksIds)
+            .transform { list -> emit(list?.map { it.asDomainModel() }) }
     }
 
 
-    override suspend fun addNewTask(title: String,priority : Int,date: Date): Boolean {
+    override suspend fun addNewTask(title: String, priority: Int, date: Date): Boolean {
         var isSuccess = false
 
         val newTask = hashMapOf(
@@ -65,19 +67,19 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val userTasks = db.collection(CollectionNames.users).document(user!!.id)
 
         coroutineScope {
-            async{
+            async {
                 generatedDoc.set(newTask)
                     .addOnSuccessListener { isSuccess = true }
                     .addOnFailureListener { Log.e(TAG, "Error writing document") }
             }
 
-            async{
+            async {
                 userTasks.update(
                     "tasks", FieldValue.arrayUnion(generatedDoc.id)
                 )
             }
 
-            async{
+            async {
                 newTaskList?.add(generatedDoc.id)
 
                 user.tasks = newTaskList!!.toList()
@@ -97,7 +99,7 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
         val user: User? = userDao.getCurrentUser()
 
         db.collection(CollectionNames.users).document(user!!.id)
-            .update("tasks",FieldValue.arrayRemove(id))
+            .update("tasks", FieldValue.arrayRemove(id))
 
         db.collection(CollectionNames.tasks).document(id).delete()
 
@@ -112,13 +114,14 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
     override suspend fun updateTaskFromLocalDB(): Flow<List<TaskModel>?> {
         val user: User? = userDao.getCurrentUser()
         val tasksIds = user?.tasks
-        return taskDao.getUserTasks(tasksIds).transform{ list -> emit(list?.map{it.asDomainModel()})}
+        return taskDao.getUserTasks(tasksIds)
+            .transform { list -> emit(list?.map { it.asDomainModel() }) }
     }
 
-    override suspend fun addTaskPoint(taskPoint : String, taskId : String) : List<List<String>> {
+    override suspend fun addTaskPoint(taskPoint: String, taskId: String): List<List<String>> {
         val taskDocument = db.collection(CollectionNames.tasks).document(taskId)
-        val newPoint = listOf(taskPoint,"false")
-        var task : Task? = null
+        val newPoint = listOf(taskPoint, "false")
+        var task: Task? = null
         taskDocument.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -134,7 +137,7 @@ class TaskRepositoryImpl @Inject constructor(private val taskDao: TaskDao, val u
             .addOnFailureListener { exception ->
                 Log.d(TAG, "failed", exception)
             }.await()
-        if(task != null)
+        if (task != null)
             taskDao.insert(task!!)
         return task!!.taskPoints
     }

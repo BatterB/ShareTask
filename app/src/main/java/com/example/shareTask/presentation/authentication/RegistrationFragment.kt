@@ -40,7 +40,10 @@ class RegistrationFragment : Fragment() {
 
         binding = FragmentRegistrationBinding.inflate(layoutInflater)
 
-        viewModel = ViewModelProvider(this, authenticationViewModelFactory)[RegistrationViewModel::class.java]
+        viewModel = ViewModelProvider(
+            this,
+            authenticationViewModelFactory
+        )[RegistrationViewModel::class.java]
 
         setObserver()
 
@@ -49,20 +52,21 @@ class RegistrationFragment : Fragment() {
         return binding.root
     }
 
-    private fun setObserver(){
-        viewModel.registrationResult.observe(viewLifecycleOwner){
+    private fun setObserver() {
+        viewModel.registrationResult.observe(viewLifecycleOwner) {
             if (it != null) {
                 if (it == 1) {
                     findNavController().navigate(R.id.action_registrationFragment_to_navigation_home)
-                    val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+                    val bottomNavigation =
+                        activity?.findViewById<BottomNavigationView>(R.id.nav_view)
                     bottomNavigation?.visibility = View.VISIBLE
                 }
             }
         }
     }
 
-    private fun setEventListener(){
-        binding.registration.setOnClickListener{
+    private fun setEventListener() {
+        binding.registration.setOnClickListener {
             viewModel.registration(
                 email = binding.emailField.text.toString().trim(' '),
                 password = binding.passwordRegistrationField.text.toString().trim(' '),

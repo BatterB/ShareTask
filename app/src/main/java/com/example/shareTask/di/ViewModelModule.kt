@@ -13,25 +13,24 @@ import javax.inject.Singleton
 @Module
 class ViewModelModule(private val context: Context) {
     @Provides
-    fun provideContext() : Context{
+    fun provideContext(): Context {
         return context
     }
 
     @Provides
-    fun provideTaskViewModel (taskListUseCaseImpl: TaskListUseCase) : TasksViewModelFactory{
+    fun provideTaskViewModel(taskListUseCaseImpl: TaskListUseCase): TasksViewModelFactory {
         return TasksViewModelFactory(taskListUseCaseImpl)
     }
 
     @Provides
-    fun provideTaskWindowViewModel (taskListUseCaseImpl: TaskListUseCase) : TaskWindowViewModelFactory {
+    fun provideTaskWindowViewModel(taskListUseCaseImpl: TaskListUseCase): TaskWindowViewModelFactory {
         return TaskWindowViewModelFactory(taskListUseCaseImpl)
     }
 
     @Provides
-    fun provideSettingsViewModel (authenticateUserUseCase : AuthenticateUserUseCase) : SettingsViewModelFactory {
+    fun provideSettingsViewModel(authenticateUserUseCase: AuthenticateUserUseCase): SettingsViewModelFactory {
         return SettingsViewModelFactory(authenticateUserUseCase)
     }
-
 
 
 }

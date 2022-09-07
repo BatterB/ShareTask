@@ -119,6 +119,7 @@ class TasksFragment : Fragment(), TaskActionListener, CreateNewTaskDialogFragmen
         viewModel.taskList.observe(viewLifecycleOwner){ list ->
             if ( list != null){
                 adapter.tasks = list.sortedWith(compareBy{it.priority}).toMutableList()
+                adapter.notifyDataSetChanged()
             }
         }
     }

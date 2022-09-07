@@ -11,7 +11,7 @@ interface UserDao {
     suspend fun insert(user: User)
 
     @Update
-    suspend fun updateUser(user:User)
+    suspend fun updateUser(user: User)
 
     @Query("SELECT * FROM $USER_TABLE WHERE id = :id")
     fun getById(id: String): Flow<User>

@@ -1,6 +1,5 @@
 package com.example.shareTask.presentation.authentication
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -42,7 +41,8 @@ class LoginFragment : Fragment() {
 
         binding = FragmentLoginBinding.inflate(layoutInflater)
 
-        viewModel = ViewModelProvider(this, authenticationViewModelFactory)[LoginViewModel::class.java]
+        viewModel =
+            ViewModelProvider(this, authenticationViewModelFactory)[LoginViewModel::class.java]
 
         val currentUser = auth.currentUser
         viewModel.updateUI(currentUser)
@@ -59,7 +59,8 @@ class LoginFragment : Fragment() {
             if (it != null) {
                 if (it == true) {
                     findNavController().navigate(R.id.action_loginFragment_to_navigation_home)
-                    val bottomNavigation = activity?.findViewById<BottomNavigationView>(R.id.nav_view)
+                    val bottomNavigation =
+                        activity?.findViewById<BottomNavigationView>(R.id.nav_view)
                     bottomNavigation?.visibility = View.VISIBLE
                 }
             }

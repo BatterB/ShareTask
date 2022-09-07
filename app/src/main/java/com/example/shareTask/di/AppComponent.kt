@@ -10,8 +10,10 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [DatabaseModule::class, ViewModelModule::class,
-     UseCaseModule::class, RepositoryModule::class,RecyclerViewModule::class])
+@Component(
+    modules = [DatabaseModule::class, ViewModelModule::class,
+        UseCaseModule::class, RepositoryModule::class, RecyclerViewModule::class]
+)
 interface AppComponent {
     fun inject(loginFragment: LoginFragment)
     fun inject(registrationFragment: RegistrationFragment)

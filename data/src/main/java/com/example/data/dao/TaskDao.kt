@@ -14,13 +14,13 @@ interface TaskDao {
     suspend fun insertAll(category: List<Task>)
 
     @Query("DELETE FROM $TASKS_TABLE WHERE id = :id")
-    suspend fun deleteById(id : String)
+    suspend fun deleteById(id: String)
 
     @Query("SELECT * FROM $TASKS_TABLE WHERE id = :id")
     fun getById(id: String): Flow<Task>
 
     @Query("SELECT * FROM $TASKS_TABLE WHERE id in (:id)")
-    fun getUserTasks (id : List<String>?) : Flow<List<Task>?>
+    fun getUserTasks(id: List<String>?): Flow<List<Task>?>
 
     @Query("DELETE FROM $TASKS_TABLE")
     suspend fun clear()

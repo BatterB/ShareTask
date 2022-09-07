@@ -6,7 +6,8 @@ import com.example.domain.usecases.AuthenticateUserUseCase
 import javax.inject.Inject
 
 class AuthenticationViewModelFactory @Inject constructor(
-    private val authenticateUserUseCase: AuthenticateUserUseCase) : ViewModelProvider.Factory {
+    private val authenticateUserUseCase: AuthenticateUserUseCase
+) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

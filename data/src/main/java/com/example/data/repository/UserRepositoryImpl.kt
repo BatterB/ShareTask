@@ -19,11 +19,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : UserRepository {
+class UserRepositoryImpl @Inject constructor(private val userDao: UserDao) : UserRepository {
 
     private var auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    override suspend fun createAccount(email: String, password: String,name: String): Boolean {
+    override suspend fun createAccount(email: String, password: String, name: String): Boolean {
         var dbUser: User? = null
         var isSuccess = false
 
@@ -45,9 +45,9 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
                         .addOnSuccessListener {
                             isSuccess = true
                         }
-                        .addOnFailureListener { Log.e(TAG,"Error writing document") }
+                        .addOnFailureListener { Log.e(TAG, "Error writing document") }
                 }
-            }.addOnFailureListener { Exception -> Log.e(TAG,Exception.toString()) }
+            }.addOnFailureListener { Exception -> Log.e(TAG, Exception.toString()) }
             .await()
         if (isSuccess) {
             withContext(Dispatchers.IO) {
@@ -73,7 +73,7 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                 }
             }
-            .addOnFailureListener{Log.e(TAG,"FailureListener")}.await()
+            .addOnFailureListener { Log.e(TAG, "FailureListener") }.await()
 
         var user: User? = null
         db.collection(CollectionNames.users).document(auth.currentUser?.uid!!).get()
@@ -82,7 +82,7 @@ class UserRepositoryImpl @Inject constructor(private val userDao : UserDao) : Us
                     user = convertUserDocumentToEntity(id!!, it)
                 }
             }
-            .addOnFailureListener { Log.e(TAG,"FailureListener")}.await()
+            .addOnFailureListener { Log.e(TAG, "FailureListener") }.await()
 
         withContext(Dispatchers.IO) {
             userDao.insert(user!!)

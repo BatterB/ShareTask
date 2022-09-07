@@ -14,14 +14,14 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideUserRepository(userDao: UserDao): UserRepository{
+    fun provideUserRepository(userDao: UserDao): UserRepository {
         return UserRepositoryImpl(userDao)
     }
 
     @Singleton
     @Provides
-    fun provideTaskRepository(taskDao: TaskDao,userDao: UserDao) : TaskRepository{
-        return TaskRepositoryImpl(taskDao,userDao)
+    fun provideTaskRepository(taskDao: TaskDao, userDao: UserDao): TaskRepository {
+        return TaskRepositoryImpl(taskDao, userDao)
     }
 
 }

@@ -15,13 +15,13 @@ import javax.inject.Singleton
 class UseCaseModule {
     @Provides
     @Singleton
-    fun provideAuthenticateUserUseCase(userRepository: UserRepository) : AuthenticateUserUseCase{
+    fun provideAuthenticateUserUseCase(userRepository: UserRepository): AuthenticateUserUseCase {
         return AuthenticateUserUseCaseImpl(userRepository = userRepository)
     }
 
     @Provides
     @Singleton
-    fun provideTaskListUseCase(taskRepository: TaskRepository) : TaskListUseCase{
+    fun provideTaskListUseCase(taskRepository: TaskRepository): TaskListUseCase {
         return TaskListUseCaseImpl(taskRepository = taskRepository)
     }
 }

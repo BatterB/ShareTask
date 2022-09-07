@@ -9,7 +9,7 @@ import java.util.*
 @Entity
 data class Task(
     @PrimaryKey
-    val id : String,
+    val id: String,
 
     @ColumnInfo(name = "title")
     var title: String,

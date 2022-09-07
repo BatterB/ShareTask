@@ -7,12 +7,12 @@ import java.util.*
 
 class Converters {
     @TypeConverter
-    fun converterListOfListToJson(list : List<List<String>>) : String?{
+    fun converterListOfListToJson(list: List<List<String>>): String? {
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun converterJsonToListOfList(string: String) : List<List<String>>{
+    fun converterJsonToListOfList(string: String): List<List<String>> {
         return Gson().fromJson(
             string,
             object : TypeToken<List<List<String>>>() {}.type
@@ -20,12 +20,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun converterListToJson(list: List<String>) : String?{
+    fun converterListToJson(list: List<String>): String? {
         return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun converterJsonToList(string: String) : List<String>{
+    fun converterJsonToList(string: String): List<String> {
         return Gson().fromJson(
             string,
             object : TypeToken<List<String>>() {}.type

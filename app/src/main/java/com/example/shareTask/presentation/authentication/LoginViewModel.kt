@@ -16,19 +16,20 @@ import javax.inject.Inject
 
 
 class LoginViewModel @Inject constructor(
-    private val authenticateUserUseCase: AuthenticateUserUseCase) : ViewModel() {
+    private val authenticateUserUseCase: AuthenticateUserUseCase
+) : ViewModel() {
 
     private val _isLoginSuccessful = MutableLiveData<Boolean?>()
-    val isLoginSuccessful : LiveData<Boolean?>
+    val isLoginSuccessful: LiveData<Boolean?>
         get() = _isLoginSuccessful
 
-    fun login(email: String, password: String){
+    fun login(email: String, password: String) {
         viewModelScope.launch {
             _isLoginSuccessful.value = authenticateUserUseCase.signIn(email, password)
         }
     }
 
-    fun updateUI(currentUser : FirebaseUser?){
+    fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
             _isLoginSuccessful.value = true
         }

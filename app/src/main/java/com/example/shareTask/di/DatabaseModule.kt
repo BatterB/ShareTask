@@ -10,7 +10,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-object DatabaseModule{
+object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(appContext: Context): ShareTaskDatabase {
@@ -29,7 +29,7 @@ object DatabaseModule{
 
     @Provides
     @Singleton
-    fun provideTaskDao(database: ShareTaskDatabase) : TaskDao {
+    fun provideTaskDao(database: ShareTaskDatabase): TaskDao {
         return database.taskDao()
     }
 }

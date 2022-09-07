@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.example.domain.models.UserModel
 
 @Entity
-data class User (
+data class User(
     @PrimaryKey
     var id: String,
 
@@ -20,7 +20,7 @@ data class User (
 
     @ColumnInfo(name = "tasks")
     var tasks: List<String>
-    )
+)
 
 fun User.asDomainModel(): UserModel {
     return UserModel(

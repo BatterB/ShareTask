@@ -6,10 +6,9 @@ import javax.inject.Inject
 
 
 class AuthenticateUserUseCaseImpl @Inject constructor(private val userRepository: UserRepository) :
-    AuthenticateUserUseCase
-{
-    override suspend fun signIn(email: String, password: String) : Boolean {
-       return userRepository.authenticate(email,password)
+    AuthenticateUserUseCase {
+    override suspend fun signIn(email: String, password: String): Boolean {
+        return userRepository.authenticate(email, password)
     }
 
     override suspend fun getCurrentUser(): UserModel? {
@@ -20,14 +19,18 @@ class AuthenticateUserUseCaseImpl @Inject constructor(private val userRepository
         userRepository.clearUser()
     }
 
-    override suspend fun createAccount(email: String, password: String, repeatPassword : String, name: String) : Int {
-        return if (password == repeatPassword){
-            if(userRepository.createAccount(email, password, name)) {
+    override suspend fun createAccount(
+        email: String,
+        password: String,
+        repeatPassword: String,
+        name: String
+    ): Int {
+        return if (password == repeatPassword) {
+            if (userRepository.createAccount(email, password, name)) {
                 1
-            }
-            else
+            } else
                 0
-        }else
+        } else
             -1
 
     }

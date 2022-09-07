@@ -10,12 +10,12 @@ import dagger.Provides
 class RecyclerViewModule {
 
     @Provides
-    fun provideTaskAdapter() : TasksAdapter{
+    fun provideTaskAdapter(): TasksAdapter {
         return TasksAdapter()
     }
 
     @Provides
-    fun provideTaskWindowAdapter() : TaskWindowAdapter{
+    fun provideTaskWindowAdapter(): TaskWindowAdapter {
         return TaskWindowAdapter()
     }
 }
