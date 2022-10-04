@@ -1,7 +1,6 @@
 package com.example.domain.usecases
 
 import com.example.domain.repository.TaskRepository
-import com.example.domain.repository.UserRepository
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.mockito.Mockito
@@ -22,7 +21,7 @@ class TaskListUseCaseTest {
 
     @Test
     fun `should return success of add new task`(): Unit = runBlocking {
-        Mockito.`when`(taskRepository.addNewTask(TITLE,INT_PRIORITY,DATE)).thenReturn(true)
+        Mockito.`when`(taskRepository.addNewTask(TITLE, INT_PRIORITY, DATE)).thenReturn(true)
 
         val useCase = TaskListUseCaseImpl(taskRepository)
 
@@ -34,10 +33,9 @@ class TaskListUseCaseTest {
 
     @Test
     fun `should return error of add new task`(): Unit = runBlocking {
-        Mockito.`when`(taskRepository.addNewTask(TITLE,INT_PRIORITY,DATE)).thenReturn(true)
+        Mockito.`when`(taskRepository.addNewTask(TITLE, INT_PRIORITY, DATE)).thenReturn(true)
 
         val useCase = TaskListUseCaseImpl(taskRepository)
-
         val actual = useCase.addNewTask(EMPTY_TITLE, STRING_PRIORITY, DATE)
         val expected = false
 
