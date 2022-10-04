@@ -13,15 +13,17 @@ class TaskListUseCaseImpl @Inject constructor(val taskRepository: TaskRepository
     }
 
     override suspend fun addNewTask(title: String, priority: String, date: Date): Boolean {
-        var intPriority: Int? = null
-        when (priority) {
-            "Very high priority" -> intPriority = 5
-            "High priority" -> intPriority = 4
-            "Standard priority" -> intPriority = 3
-            "Low priority" -> intPriority = 2
-            "Very low priority" -> intPriority = 1
-        }
-        return taskRepository.addNewTask(title, intPriority!!, date)
+        return if (title != "") {
+            var intPriority: Int? = null
+            when (priority) {
+                "Very high priority" -> intPriority = 5
+                "High priority" -> intPriority = 4
+                "Standard priority" -> intPriority = 3
+                "Low priority" -> intPriority = 2
+                "Very low priority" -> intPriority = 1
+            }
+            taskRepository.addNewTask(title, intPriority!!, date)
+        }else false
     }
 
     override suspend fun deleteTask(id: String) {

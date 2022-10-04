@@ -7,8 +7,12 @@ import javax.inject.Inject
 
 class AuthenticateUserUseCaseImpl @Inject constructor(private val userRepository: UserRepository) :
     AuthenticateUserUseCase {
+
     override suspend fun signIn(email: String, password: String): Boolean {
-        return userRepository.authenticate(email, password)
+        return if (email != "" && password != "")
+            userRepository.authenticate(email, password)
+        else
+            false
     }
 
     override suspend fun getCurrentUser(): UserModel? {
